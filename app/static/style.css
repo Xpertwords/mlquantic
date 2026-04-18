@@ -1,0 +1,43 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.page-header h1 {
+    font-weight: 700;
+}
+
+.card {
+    border-radius: 14px;
+}
+
+.metric-box {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    padding: 18px;
+    min-height: 120px;
+}
+
+.metric-title {
+    font-size: 0.95rem;
+    color: #6c757d;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.metric-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #212529;
+}
+
+.metric-small {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #212529;
+    word-break: break-word;
+}
+
+table th {
+    white-space: nowrap;
+}

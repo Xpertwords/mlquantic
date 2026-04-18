@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malware Detection - Manual Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Malware Detection System</a>
+            <div>
+                <a class="btn btn-outline-light btn-sm" href="{{ url_for('index') }}">Manual Prediction</a>
+                <a class="btn btn-warning btn-sm" href="{{ url_for('batch') }}">Batch Upload</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <div class="page-header mb-4">
+            <h1 class="mb-2">Manual Malware Prediction</h1>
+            <p class="text-muted">
+                Enter feature values for a single instance and generate a malware/goodware prediction.
+            </p>
+        </div>
+
+        {% if model_error %}
+        <div class="alert alert-danger">
+            <strong>Model not ready:</strong> {{ model_error }}
+        </div>
+        {% endif %}
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form action="{{ url_for('predict') }}" method="post">
+                    <div class="row">
+                        {% for col in feature_columns %}
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">{{ col }}</label>
+                            <input
+                                type="text"
+                                name="{{ col }}"
+                                class="form-control"
+                                placeholder="Enter {{ col }}"
+                                value="{{ demo_row[col] }}"
+                            >
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="d-flex gap-2 mt-3">
+                        <button type="submit" class="btn btn-primary">Predict</button>
+                        <a href="{{ url_for('batch') }}" class="btn btn-outline-secondary">Go to Batch Upload</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <div class="card border-0 bg-light">
+                <div class="card-body">
+                    <h5>Expected label meaning</h5>
+                    <p class="mb-1"><strong>0</strong> = goodware</p>
+                    <p class="mb-0"><strong>1</strong> = malware</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
