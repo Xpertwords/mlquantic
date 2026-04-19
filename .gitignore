@@ -5,8 +5,6 @@ __pycache__/
 .pytest_cache/
 .vscode/
 data/raw/
-data/processed/
-models/
 reports/figures/
 *.pyc
 *.pyo
